@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        OPENAI_API_KEY = credentials('OPENAI_API_KEY')
+        GEMINI_API_KEY = credentials('GEMINI_API_KEY')
         PORT = '3000'
     }
 
@@ -10,7 +10,7 @@ pipeline{
         stage( 'Checkout' ){
             steps {
                 git branch: 'main',
-                url: 'https://github.com/ytmicrodegreeprojects/chatgpt_clone.git'
+                url: 'https://github.com/NishanthHJ/chatgpt_clone.git'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline{
                         docker run -d \
                             --name chatgpt-clone-container \
                             -p 3000:3000 \
-                            -e OPENAI_API_KEY='${OPENAI_API_KEY}' \
+                            -e GEMINI_API_KEY='${GEMINI_API_KEY}' \
                             -e PORT='${PORT}' \
                             chatgpt_clone 
                     """
